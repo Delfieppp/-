@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta name="robots" content="noindex, nofollow" />
@@ -146,6 +146,47 @@
       text-align: center;
       z-index: 9999;
     }
+
+    #background-gif {
+     position: fixed;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     z-index: -1; /* 🔥 確保它比所有東西都底層 */
+     pointer-events: none; /* ✅ 不攔截點擊 */
+    }
+
+    #background-gif img {
+    width: 100%;
+    max-width: 1500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .button-wrapper {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-top: 50px; /* 往下移一點 */
+  }
+
+  .quiz-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-family: 'DFKai-SB', '標楷體', sans-serif;
+      color: yellow;
+    }
+  .quiz-button:hover {
+      background-color: #ff1493;
+    }
+
   </style>
 </head>
 
@@ -157,7 +198,7 @@
 
   <!-- 點擊進入 -->
   <div id="intro" onclick="startMusic()">
-    點擊螢幕尋找真命天子<br>
+    💋點擊螢幕尋找真命天子💋<br>
   </div>
 
   <!-- 背景音樂 -->
@@ -170,6 +211,12 @@
     🌹有緣千里來相會（無緣請出門）🌹
   </header>
 
+  <div class="button-wrapper">
+    <button onclick="window.location.href='quiz.html'" class="quiz-button">
+      媒婆の靈擇戀人配對術 ❤️(點擊免費配對無廣告)
+    </button>
+  </div>
+
   <!-- 卡片區 -->
   <div class="character-grid">
     <div class="card" onclick="openModal('danielModal')">
@@ -179,7 +226,17 @@
 
     <div class="card" onclick="openModal('asaModal')">
       <img src="https://i.postimg.cc/9MGxXBxB/clideo-editor-8bd44783cc24459bb9801b86a80f67ac.gif" class="avatar" />
-      <h3>朝明（25歲）</h3>
+      <h3>阿浪2000（25歲）</h3>
+    </div>
+
+     <div class="card" onclick="openModal('melinaModal')">
+      <img src="https://i.postimg.cc/J0SMH2GS/picmix-com-12834241.gif" class="avatar" />
+      <h3>gunbunny（19歲）</h3>
+    </div>
+
+     <div class="card" onclick="openModal('daijiModal')">
+      <img src="https://i.postimg.cc/0Q5gzfjP/B5-E6849-F-E8-A9-4-D67-B9-C3-AD3-A63-DF156-A.jpg" class="avatar" />
+      <h3>大司（20歲）</h3>
     </div>
   </div>
 
@@ -193,7 +250,7 @@
       </div>
       <div><span class="label">名字：</span>丹尼爾拜利</div>
       <div><span class="label">年齡：</span>21 歲</div>
-      <div><span class="label">性向：</span>雙性</div>
+      <div><span class="label">性向：</span>雙性戀</div>
       <div><span class="label">身高：</span>175 公分 (自稱185)</div>
       <div><span class="label">個性描述：</span><br>
         ♡ 喜歡裝酷但其實是遜咖<br>
@@ -228,29 +285,75 @@
     </div>
   </div>
 
-  <!-- 彈窗：朝明 -->
+  <!-- 彈窗：穆浪 -->
   <div class="modal" id="asaModal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('asaModal')">&times;</span>
-      <img src="https://i.postimg.cc/3rm129Fj/picmix-com-12834086.gif" class="avatar" />
-      <div><span class="label">名字：</span>朝明</div>
-      <div><span class="label">年齡：</span>25 歲</div>
-      <div><span class="label">性別：</span>男</div>
-      <div><span class="label">身高：</span>171 公分</div>
-      <div><span class="label">個性描述：</span>好笑</div>
-      <div><span class="label">喜好／興趣：</span>排球</div>
-      <div><span class="label">背景設定：</span>無</div>
+      <img src="https://i.postimg.cc/3rm129Fj/picmix-com-12834086.gif" class="avatar" /> 
       <div style="margin-top: 20px; font-size: 18px;">
         📩 <span class="label">聯絡方式：</span> instagram:@hymin_oon
       </div>
+      <span class="label">衝浪只是衝心情的啦</span>
+      <div><span class="label">名字：</span>穆浪</div>
+      <div><span class="label">年齡：</span>25 歲</div>
+      <div><span class="label">性向：</span>雙性戀</div>
+      <div><span class="label">身高：</span>171 公分</div>
+      <div><span class="label">個性描述：</span>chill guy</div>
+      <div><span class="label">喜好／興趣：</span>排球,衝浪,烤肉</div>
+      <div><span class="label">TMI：</span>無</div>
+      <div style="height: 60px;"></div>
     </div>
   </div>
   
- <div style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; z-index: 999;">
-  <img src="https://i.postimg.cc/qMJx3KBj/picmix-com-2337503.gif" 
-       style="width: 100%; max-width: 1500px; height: auto;" />
+   <!-- 彈窗：馬莉娜 -->
+  <div class="modal" id="melinaModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('melinaModal')">&times;</span>
+      <img src="https://i.postimg.cc/J0SMH2GS/picmix-com-12834241.gif" class="avatar" /> 
+      <div style="margin-top: 20px; font-size: 18px;">
+        📩 <span class="label">聯絡方式：</span> instagram:@hymin_oon
+      </div>
+      <div><span class="label">名字：</span>馬莉娜</div>
+      <div><span class="label">年齡：</span>19 歲</div>
+      <div><span class="label">性向：</span>肌性戀,錢性戀</div>
+      <div><span class="label">身高：</span>171 公分</div>
+      <div><span class="label">個性描述：</span>瘋子</div>
+      <div><span class="label">喜好／興趣：</span><br>
+      做指甲</div>
+      <div><span class="label">TMI：</span><br>
+      ♡ 其實是塞爾維亞人<br>
+      ♡ 天蠍座<br>
+      ♡ 之前懶得去髮廊就拿戰術刀剪頭髮結果超醜<br>
+      </div>
+      <div style="height: 60px;"></div>
+    </div>
+  </div>
+
+   <!-- 彈窗：大司 -->
+  <div class="modal" id="daijiModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('daijiModal')">&times;</span>
+      <img src="https://i.postimg.cc/3rm129Fj/picmix-com-12834086.gif" class="avatar" /> 
+      <div style="margin-top: 20px; font-size: 18px;">
+        📩 <span class="label">聯絡方式：</span> instagram:@hymin_oon
+      </div>
+      <div><span class="label">名字：</span>大司</div>
+      <div><span class="label">年齡：</span>20歲</div>
+      <div><span class="label">性別：</span>男</div>
+      <div><span class="label">身高：</span>186公分</div>
+      <div><span class="label">個性描述：</span>chill guy</div>
+      <div><span class="label">喜好／興趣：</span>滑板</div>
+      <div><span class="label">：</span>無</div>
+     
+    </div>
+  </div>
+
+<!-- 這個是背景 GIF，貼在最底層，不影響點擊 -->
+<div id="background-gif">
+  <img src="https://i.postimg.cc/qMJx3KBj/picmix-com-2337503.gif" />
 </div>
-  
+
+
   <!-- 控制彈窗 + 音樂的 JS -->
   <script>
     function startMusic() {
