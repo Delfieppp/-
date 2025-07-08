@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>媒婆の靈擇戀人配對術</title>
+  <style>
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); color: white; padding: 2em; }
+    .modal.active { display: block; }
+    .home { text-align: center; margin-top: 3em; font-size: 1.5em; }
+    .quiz-content ul { list-style: none; padding: 0; }
+    .quiz-content li { margin: 1em 0; cursor: pointer; padding: 0.5em; background: #444; border-radius: 8px; }
+    .quiz-content li:hover { background: #666; }
+    button { padding: 0.5em 1em; font-size: 1em; margin-top: 1em; }
+    body {
+      margin: 0;
+      font-family: "DFKai-SB", "標楷體", sans-serif;
+      background-image: url('https://i.postimg.cc/dVXCP1Xw/picmix-com-11796206.gif');
+      background-size: 1000px;
+      color: #800000;
+    }
+    marquee {
+      background-color: yellow;
+      color: red;
+      font-size: 24px;
+      font-family: 'DFKai-SB', '標楷體', sans-serif;
+      padding: 10px;
+      border-top: 3px double red;
+      border-bottom: 3px double red;
+    }
+
+  </style>
+</head>
+<body>
+ <marquee>
+    我們這裡的憋佬仔
+脖上喜歡掛玉牌
+香爐供台上擺
+長大才開白黃牌
+虔誠拜三拜
+錢包裡多幾百
+易的是六合彩
+難的是等河牌
+來財
+來
+宗旨利滾利
+對應
+好運
+八方來
+散了才能聚
+你不出手？
+說聊齋
+這一把直接合
+因為我花錢交朋友
+藝高人膽大
+攬佬小盲三條九
+回饋社會先
+摸到那頂皇冠後
+找你做事人太多
+事情兩袖清風做
+一陰一陽之謂道
+紫氣東來
+明碼標價的那些物
+非黑即白
+若上頒獎台切莫張燈結彩
+八仙桌的收尾少不了空心菜
+上北下南左西右東
+東南東北
+西北西南
+步步高升
+八方來財
+四海為家興旺
+百事可樂
+千事吉祥
+萬事如意
+順風順水
+天道酬勤
+鵬程萬裡
+你不給點表示嗎
+我們這裡的憋佬仔
+脖上喜歡掛玉牌
+香爐供台上擺
+長大才開白黃牌
+虔誠拜三拜
+錢包裡多幾百
+易的是六合彩
+難的是等河牌
+來財
+來
+宗旨利滾利
+對應
+好運
+八方來
+散了才能聚
+你不出手？
+說聊齋
+  </marquee>
+<div class="home">
+  開始測驗❤️‍🔥<br />
+  <button id="startQuizBtn" onclick="openQuiz()">start</button>
+</div>
+
+<!-- 測驗 Modal -->
+<div id="quizModal" class="modal">
+  <div class="quiz-content">
+    <p id="questionText"></p>
+    <ul id="optionsList"></ul>
+  </div>
+</div>
+
+<!-- 結果 Modal -->
+<div id="danielModal" class="modal">
+  <p>你屬於 丹尼爾 ❤️</p>
+  <button onclick="backToHome()">返回首頁</button>
+</div>
+<div id="asaModal" class="modal">
+  <p>你屬於 穆浪 ☀️</p>
+  <button onclick="backToHome()">返回首頁</button>
+</div>
+<div id="melinaModal" class="modal">
+  <p>你屬於 馬莉娜 🔥</p>
+  <button onclick="backToHome()">返回首頁</button>
+</div>
+<div id="daijiModal" class="modal">
+  <p>你屬於 大司 🍰</p>
+  <button onclick="backToHome()">返回首頁</button>
+</div>
+
+<script>
+  const quizData = [
+    {
+      question: "❶ 你約會時最在意什麼？",
+      options: [
+        { text: "喜歡被照顧，行程都幫我安排好", scoreFor: "asaModal" },
+        { text: "喜歡刺激的場面，越危險越興奮", scoreFor: "melinaModal" },
+        { text: "喜歡被調情，曖昧最美但也沒差太認真", scoreFor: "danielModal" },
+        { text: "不喜歡吵鬧，安靜的地方和舒服氣氛最好", scoreFor: "daijiModal" }
+      ]
+    },
+    {
+      question: "❷ 你在一段關係裡最怕什麼？",
+      options: [
+        { text: "怕無聊，日子太平淡會想逃跑", scoreFor: "melinaModal" },
+        { text: "怕被晾著，我很黏人需要安全感", scoreFor: "asaModal" },
+        { text: "怕太認真，綁住我我就想溜", scoreFor: "danielModal" },
+        { text: "怕話太多，對方太吵會讓我想關靜音", scoreFor: "daijiModal" }
+      ]
+    },
+    {
+      question: "❸ 週末約會行程，你最想去哪？",
+      options: [
+        { text: "夜店！地下場！槍械展！總之就是很不安全的地方", scoreFor: "melinaModal" },
+        { text: "街邊甜點店+滑板場，一起 chill 一起玩", scoreFor: "daijiModal" },
+        { text: "戀愛冒險之旅，什麼都可以只要你陪我", scoreFor: "asaModal" },
+        { text: "誰約會？我早上約 A 晚上約 B，安排滿滿", scoreFor: "danielModal" }
+      ]
+    },
+    {
+      question: "❹ 你喜歡怎樣的人？",
+      options: [
+        { text: "長得帥，講話又油又甜，騙我我也開心", scoreFor: "danielModal" },
+        { text: "嘴很賤，但在你面前又突然很暖", scoreFor: "daijiModal" },
+        { text: "跑得比你還快，像個不定時炸彈", scoreFor: "melinaModal" },
+        { text: "天天都想黏著你，不講話都能一起開心", scoreFor: "asaModal" }
+      ]
+    },
+    {
+      question: "❺ 如果你心情低落，你希望對方怎麼做？",
+      options: [
+        { text: "帶我出去冒險，轉移注意力最好", scoreFor: "asaModal" },
+        { text: "抱我、哄我、撒嬌哄我睡覺", scoreFor: "danielModal" },
+        { text: "聽我罵世界，然後一起喝酒放 hardbass", scoreFor: "melinaModal" },
+        { text: "默默陪著我，不說話但遞上一杯熱可可", scoreFor: "daijiModal" }
+      ]
+    },
+    {
+      question: "❻ 如果你今天戀愛失敗了，你會？",
+      options: [
+        { text: "馬上去夜店找下個對象", scoreFor: "danielModal" },
+        { text: "騎滑板繞城一圈順便吃掉三家甜點店", scoreFor: "daijiModal" },
+        { text: "偷偷掉淚，但還是會說「我沒事」", scoreFor: "asaModal" },
+        { text: "拿出你的黑色風衣和軍靴，下一秒就報名傭兵訓練營", scoreFor: "melinaModal" }
+      ]
+    }
+  ];
+
+  let currentQuestionIndex = 0;
+  const scores = {
+    danielModal: 0,
+    asaModal: 0,
+    melinaModal: 0,
+    daijiModal: 0
+  };
+
+  const questionText = document.getElementById("questionText");
+  const optionsList = document.getElementById("optionsList");
+
+  function openQuiz() {
+    document.querySelector(".home").style.display = "none";
+    document.getElementById("quizModal").classList.add("active");
+    showQuestion();
+  }
+
+  function showQuestion() {
+    questionText.textContent = quizData[currentQuestionIndex].question;
+    optionsList.innerHTML = "";
+
+    quizData[currentQuestionIndex].options.forEach(opt => {
+      const li = document.createElement("li");
+      li.textContent = opt.text;
+      li.addEventListener("click", () => {
+        scores[opt.scoreFor]++;
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+          showQuestion();
+        } else {
+          document.getElementById("quizModal").classList.remove("active");
+          showResult();
+        }
+      });
+      optionsList.appendChild(li);
+    });
+  }
+
+  function showResult() {
+    const maxScore = Math.max(...Object.values(scores));
+    const winners = Object.entries(scores).filter(([_, val]) => val === maxScore).map(([key]) => key);
+    const winnerModalId = winners[0];
+    document.getElementById(winnerModalId).classList.add("active");
+  }
+
+  function backToHome() {   
+   // 關掉所有 modal
+  ["danielModal", "asaModal", "melinaModal", "daijiModal", "quizModal"].forEach(id => {
+   document.getElementById(id).classList.remove("active");
+  });
+
+   // 重置分數與題目進度
+   for (const key in scores) scores[key] = 0;
+
+   // 導回首頁 index.html
+   window.location.href = "index.html";
+  }
+
+</script>
+
+</body>
+</html>
