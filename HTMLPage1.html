@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8">
+  <title>🌹有緣千里來相會（無緣請出門）🌹</title>
+
+  <!-- 游標樣式 -->
+  <style type="text/css">
+    * {
+      cursor: url(https://ani.cursors-4u.net/symbols/sym-8/sym761.ani),
+              url(https://ani.cursors-4u.net/symbols/sym-8/sym761.png),
+              auto !important;
+    }
+  </style>
+
+  <!-- 主樣式 -->
+  <style>
+    body {
+      margin: 0;
+      font-family: "DFKai-SB", "標楷體", sans-serif;
+      background-image: url('https://i.postimg.cc/K87djTGZ/old-master-patterns-red-brick-wall-texture-backdrop-for-photo-medium.webp');
+      background-size: contain;
+      color: #800000;
+    }
+
+    header {
+      background-image: url('https://i.postimg.cc/8zrz0tmZ/picmix-com-12833676.gif');
+      background-size: 800px;
+      background-position: center;
+      padding: 100px;
+      text-align: center;
+      font-size: 60px;
+      color: blue;
+      text-shadow: 2px 2px white;
+      border-bottom: 5px double blue;
+    }
+
+    .character-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 10px;
+    }
+
+    .card {
+      background-color: #fffce6;
+      border: 4px double #cc0000;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+      border-radius: 10px;
+      box-shadow: 5px 5px 0px #999;
+      box-sizing: border-box;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .avatar {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background-color: #ddd;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: #fff0f5;
+      margin: 5% auto;
+      padding: 10px 20px;
+      padding-bottom: 40px;  /* ✅ 新增這行 */
+      border: 3px double red;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 5px 5px #999;
+      position: relative;
+      font-size: 20px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+
+    .modal-content .avatar {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 300px;
+      display: block;
+      margin: 0 auto 20px auto;
+      object-fit: cover;
+    }
+
+    .label {
+      color: red;
+      font-weight: bold;
+    }
+
+    .close {
+      color: red;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    marquee {
+      background-color: yellow;
+      color: red;
+      font-size: 24px;
+      font-family: 'DFKai-SB', '標楷體', sans-serif;
+      padding: 10px;
+      border-top: 3px double red;
+      border-bottom: 3px double red;
+    }
+
+    #intro {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      background-image: url('https://i.postimg.cc/G3Qz51Lm/picmix-com-3166114.gif');
+      background-size: cover;
+      background-position: center;
+      color: yellow;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 70px;
+      font-family: 'DFKai-SB', '標楷體', sans-serif;
+      text-shadow: 2px 2px red;
+      text-align: center;
+      z-index: 9999;
+    }
+  </style>
+</head>
+
+<body>
+
+  <marquee>
+    📞 聯絡方式：請寄信至 instagram: @hymin_oon｜🌹有緣千里來相會（無緣請出門）🌹
+  </marquee>
+
+  <!-- 點擊進入 -->
+  <div id="intro" onclick="startMusic()">
+    點擊螢幕尋找真命天子<br>
+  </div>
+
+  <!-- 背景音樂 -->
+  <audio id="bgm" autoplay loop muted>
+    <source src="bgm.mp3" type="audio/mpeg">
+    您的瀏覽器不支援 audio 標籤。
+  </audio>
+
+  <header>
+    🌹有緣千里來相會（無緣請出門）🌹
+  </header>
+
+  <!-- 卡片區 -->
+  <div class="character-grid">
+    <div class="card" onclick="openModal('danielModal')">
+      <img src="https://i.postimg.cc/SRdXZLHN/BC849-DB4-1576-4803-8-C7-B-F8-F8-BD040-EF2.jpg" class="avatar" />
+      <h3>丹尼爾（21歲）</h3>
+    </div>
+
+    <div class="card" onclick="openModal('asaModal')">
+      <img src="https://i.postimg.cc/9MGxXBxB/clideo-editor-8bd44783cc24459bb9801b86a80f67ac.gif" class="avatar" />
+      <h3>朝明（25歲）</h3>
+    </div>
+  </div>
+
+  <!-- 彈窗：丹尼爾 -->
+  <div class="modal" id="danielModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('danielModal')">&times;</span>
+      <img src="https://i.postimg.cc/SRdXZLHN/BC849-DB4-1576-4803-8-C7-B-F8-F8-BD040-EF2.jpg" class="avatar" />
+      <div style="margin-top: 20px; font-size: 18px;">
+        📩 <span class="label">聯絡方式：</span> instagram:@hymin_oon
+      </div>
+      <div><span class="label">名字：</span>丹尼爾拜利</div>
+      <div><span class="label">年齡：</span>21 歲</div>
+      <div><span class="label">性向：</span>雙性</div>
+      <div><span class="label">身高：</span>175 公分 (自稱185)</div>
+      <div><span class="label">個性描述：</span><br>
+        ♡ 喜歡裝酷但其實是遜咖<br>
+        ♡ 花花公子，男的女的都可以<br>
+        ♡ 愛秀身材，但讓人感覺很油膩
+      </div>
+      <div><span class="label">喜好／興趣：</span><br>
+       ♡  平常都聽Chris brown,tyga,partynextdoor,lil Wayne<br>
+       ♡ 喜歡叫女生shorty,doll, princess 等尷尬稱呼<br>
+       ♡ 反正就是標準兄弟會男跟抖音飢渴陷阱男<br>
+       ♡ 喜歡滑板但很爛不過都讓自己摔的帥一點<br>
+       ♡ 喜歡衝浪但很爛然後故意秀一下肌肉<br>
+       ♡ 喜歡游泳但游仰式經常撞到頭<br>
+       ♡ 會電吉他且蠻厲害因為聽說女生都愛吉他手</div>
+      <div><span class="label">TMI：</span><br>
+       ♡ 討厭番茄跟小黃瓜<br>
+       ♡ 乳糖不耐症<br>
+       ♡ 都用Spotify 凸顯自己音樂品味<br>
+       ♡ 他肯定會發這個在抖音:<br>
+      <img src="https://i.postimg.cc/3NjGs4bW/516745282-17849226702507347-5744758256686289355-n.jpg"/><br>
+       ♡ 在推特滑東西會一直@grok<br>
+       ♡ 會發自己騎重機的影片<br>
+       ♡ 意外的喜歡被掐跟掐人<br>
+       ♡ 還有手很大<br>
+       ♡ Gpa只有1.2<br>
+       ♡ 被抖音女騙wlw 是winners love winning<br>
+         所以有一陣子都會#Wlw<br>
+       ♡ 另一陣子被騙mlm 是men love McDonald’s<br>
+         所以另一陣子也一直# mlm(因此還第一次約男生)<br>
+       ♡ 絕對會拍這種影片<br>
+      <video src="video1.mp4"
+       width="280" 
+       height="500" 
+       autoplay="true" 
+       controls="true" 
+      </video>
+      </div>
+      <div style="height: 60px;"></div>
+    </div>
+  </div>
+
+  <!-- 彈窗：朝明 -->
+  <div class="modal" id="asaModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('asaModal')">&times;</span>
+      <img src="https://i.postimg.cc/3rm129Fj/picmix-com-12834086.gif" class="avatar" />
+      <div><span class="label">名字：</span>朝明</div>
+      <div><span class="label">年齡：</span>25 歲</div>
+      <div><span class="label">性別：</span>男</div>
+      <div><span class="label">身高：</span>171 公分</div>
+      <div><span class="label">個性描述：</span>好笑</div>
+      <div><span class="label">喜好／興趣：</span>排球</div>
+      <div><span class="label">背景設定：</span>無</div>
+      <div style="margin-top: 20px; font-size: 18px;">
+        📩 <span class="label">聯絡方式：</span> instagram:@hymin_oon
+      </div>
+    </div>
+  </div>
+
+  <!-- 控制彈窗 + 音樂的 JS -->
+  <script>
+    function startMusic() {
+      const bgm = document.getElementById('bgm');
+      bgm.muted = false;
+      bgm.play();
+      document.getElementById('intro').style.display = 'none';
+    }
+
+    function openModal(id) {
+      document.getElementById(id).style.display = "block";
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
