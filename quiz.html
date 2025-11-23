@@ -107,25 +107,27 @@ button {
       border-bottom: 3px double red;
     }
 
-.intro-video video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  cursor: pointer;  /* 手機也可點掉 */
-}
-    /* ===== 開場影片 ===== */
+
+   /* ===== 開場影片 ===== */
 .intro-video {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 50vw;
-  height: 50vh;
+  top: 0; left: 0;
+  width: 100%;       /* 佔滿螢幕方便置中 */
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: rgba(0,0,0,0.6); /* 半透明背景 */
   z-index: 9999;
 }
 
+.intro-video video {
+  max-width: 90%;    /* 最大寬度為螢幕90% */
+  max-height: 90%;   /* 最大高度為螢幕90% */
+  width: auto;       /* 自動調整寬度保持比例 */
+  height: auto;      /* 自動調整高度保持比例 */
+  cursor: pointer;   /* 手機也可點掉 */
+}
   </style>
 </head>
 <body>
@@ -356,4 +358,5 @@ document.getElementById("introVideo").addEventListener("click", function () {
 
 </body>
 </html>
+
 
