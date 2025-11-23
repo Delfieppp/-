@@ -1,16 +1,95 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <title>媒婆の靈擇戀人配對術</title>
+  <style type="text/css">
+    * {
+      cursor: url(https://ani.cursors-4u.net/symbols/sym-8/sym761.ani),
+              url(https://ani.cursors-4u.net/symbols/sym-8/sym761.png),
+              auto !important;
+    }
+  </style>
   <style>
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); color: white; padding: 2em; }
-    .modal.active { display: block; }
-    .home { text-align: center; margin-top: 3em; font-size: 1.5em; }
-    .quiz-content ul { list-style: none; padding: 0; }
-    .quiz-content li { margin: 1em 0; cursor: pointer; padding: 0.5em; background: #444; border-radius: 8px; }
-    .quiz-content li:hover { background: #666; }
-    button { padding: 0.5em 1em; font-size: 1em; margin-top: 1em; }
+
+  body {
+  padding: 1em;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #fffce5; /* 給背景一點溫和顏色 */
+}
+
+    .modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 2em;
+}
+
+.modal.active { 
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  }
+
+.home {
+  text-align: center;
+  margin-top: 3em;
+  font-size: 1.5em;
+}
+
+/* 你要的樣式改這裡 */
+.quiz-content {
+  background-color: yellow;
+  padding: 2em;
+  border-radius: 16px;
+  max-width: 600px;
+  margin: 2em auto; /* 讓整個內容置中 */
+}
+
+
+.quiz-content p {
+  font-size: 2em;
+  color: #ff00a6;
+  margin-bottom: 1em;
+}
+
+.quiz-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.quiz-content li {
+  font-size: 1.5em;
+  color: #ff00a6;
+  background: #ffccf3;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+  word-wrap: break-word;     /* 避免文字太長爆出去 */
+  max-width: 100%;           /* 不超出容器 */
+  box-sizing: border-box;    /* padding 不會撐爆寬度 */
+}
+
+
+.quiz-content li:hover {
+  background: #ff00a6;
+}
+
+button {
+  padding: 0.5em 0.5em;
+  font-size: 1em;
+  margin-top: 1em;
+}
+
     body {
       margin: 0;
       font-family: "DFKai-SB", "標楷體", sans-serif;
@@ -28,11 +107,38 @@
       border-bottom: 3px double red;
     }
 
+    .intro-video video {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  cursor: pointer;  /* 手機也可點掉 */
+}
+    /* ===== 開場影片 ===== */
+.intro-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
   </style>
 </head>
 <body>
+  <!-- 開場影片 -->
+<div id="introVideo" class="intro-video">
+  <video autoplay muted playsinline id="introVideoPlayer">
+    <source src="copy_D10DACBD-DCA3-4916-B4C4-78A0CD0139A5.mov" type="video/mp4">
+  </video>
+</div>
+
  <marquee>
-    我們這裡的憋佬仔
+ 我們這裡的憋佬仔
 脖上喜歡掛玉牌
 香爐供台上擺
 長大才開白黃牌
@@ -94,6 +200,7 @@
 你不出手？
 說聊齋
   </marquee>
+
 <div class="home">
   開始測驗❤️‍🔥<br />
   <button id="startQuizBtn" onclick="openQuiz()">start</button>
@@ -109,78 +216,71 @@
 
 <!-- 結果 Modal -->
 <div id="danielModal" class="modal">
-  <p>你屬於 丹尼爾 ❤️</p>
+  <p>丹尼爾可以當你ㄆ友 ❤️</p>
   <button onclick="backToHome()">返回首頁</button>
 </div>
 <div id="asaModal" class="modal">
-  <p>你屬於 穆浪 ☀️</p>
+  <p>穆浪可以當你的狗 ❤️</p>
   <button onclick="backToHome()">返回首頁</button>
 </div>
 <div id="melinaModal" class="modal">
-  <p>你屬於 馬莉娜 🔥</p>
+  <p>咪麗娜勉為其難的可以跟你約會 ❤️</p>
   <button onclick="backToHome()">返回首頁</button>
 </div>
 <div id="daijiModal" class="modal">
-  <p>你屬於 大司 🍰</p>
+  <p>大司沒說什麼 ❤️</p>
   <button onclick="backToHome()">返回首頁</button>
 </div>
 
 <script>
   const quizData = [
     {
-      question: "❶ 你約會時最在意什麼？",
+      question: "❶ 約會想在戶外or室內？",
       options: [
-        { text: "喜歡被照顧，行程都幫我安排好", scoreFor: "asaModal" },
-        { text: "喜歡刺激的場面，越危險越興奮", scoreFor: "melinaModal" },
-        { text: "喜歡被調情，曖昧最美但也沒差太認真", scoreFor: "danielModal" },
-        { text: "不喜歡吵鬧，安靜的地方和舒服氣氛最好", scoreFor: "daijiModal" }
+        { text: "戶外", scoreFor: ["asaModal", "daijiModal", "danielModal"] },
+        { text: "室內", scoreFor: "melinaModal" },
       ]
     },
     {
-      question: "❷ 你在一段關係裡最怕什麼？",
+      question: "❷ 如果你是美國人你會選誰？",
       options: [
-        { text: "怕無聊，日子太平淡會想逃跑", scoreFor: "melinaModal" },
-        { text: "怕被晾著，我很黏人需要安全感", scoreFor: "asaModal" },
-        { text: "怕太認真，綁住我我就想溜", scoreFor: "danielModal" },
-        { text: "怕話太多，對方太吵會讓我想關靜音", scoreFor: "daijiModal" }
+        { text: "川普", scoreFor:  "danielModal" },
+        { text: "賀錦麗", scoreFor: "asaModal" },
+        { text: "干我屁事", scoreFor: ["melinaModal", "daijiModal"] },
       ]
     },
     {
-      question: "❸ 週末約會行程，你最想去哪？",
+      question: "❸ 選一個地方去玩？",
       options: [
-        { text: "夜店！地下場！槍械展！總之就是很不安全的地方", scoreFor: "melinaModal" },
-        { text: "街邊甜點店+滑板場，一起 chill 一起玩", scoreFor: "daijiModal" },
-        { text: "戀愛冒險之旅，什麼都可以只要你陪我", scoreFor: "asaModal" },
-        { text: "誰約會？我早上約 A 晚上約 B，安排滿滿", scoreFor: "danielModal" }
+        { text: "夜店", scoreFor: ["melinaModal", "daijiModal", "danielModal"] },
+        { text: "巴西", scoreFor: ["asaModal",  "danielModal"] },
+        { text: "芬蘭", scoreFor: ["melinaModal",  "daijiModal", "asaModal"] }
       ]
     },
     {
-      question: "❹ 你喜歡怎樣的人？",
+      question: "❹ 點飲料？",
       options: [
-        { text: "長得帥，講話又油又甜，騙我我也開心", scoreFor: "danielModal" },
-        { text: "嘴很賤，但在你面前又突然很暖", scoreFor: "daijiModal" },
-        { text: "跑得比你還快，像個不定時炸彈", scoreFor: "melinaModal" },
-        { text: "天天都想黏著你，不講話都能一起開心", scoreFor: "asaModal" }
+        { text: "珍奶全糖少冰", scoreFor: ["asaModal",  "daijiModal"] },
+        { text: "長島冰茶", scoreFor: ["melinaModal",  "danielModal"] },
       ]
     },
     {
-      question: "❺ 如果你心情低落，你希望對方怎麼做？",
+      question: "❺ 如果有人在上廁所但你在等？",
       options: [
-        { text: "帶我出去冒險，轉移注意力最好", scoreFor: "asaModal" },
-        { text: "抱我、哄我、撒嬌哄我睡覺", scoreFor: "danielModal" },
-        { text: "聽我罵世界，然後一起喝酒放 hardbass", scoreFor: "melinaModal" },
-        { text: "默默陪著我，不說話但遞上一杯熱可可", scoreFor: "daijiModal" }
+        { text: "砰砰砰砰砰", scoreFor: "melinaModal" },
+        { text: "你要不要吃哈密瓜", scoreFor: "danielModal" },
+        { text: "默默站在門口聽裡面稀哩嘩啦", scoreFor: ["asaModal",  "daijiModal"] },
       ]
     },
     {
-      question: "❻ 如果你今天戀愛失敗了，你會？",
+      question: "❻ 你會怎麼玩模擬市民？",
       options: [
-        { text: "馬上去夜店找下個對象", scoreFor: "danielModal" },
-        { text: "騎滑板繞城一圈順便吃掉三家甜點店", scoreFor: "daijiModal" },
-        { text: "偷偷掉淚，但還是會說「我沒事」", scoreFor: "asaModal" },
-        { text: "拿出你的黑色風衣和軍靴，下一秒就報名傭兵訓練營", scoreFor: "melinaModal" }
+        { text: "下載一堆cc,然後把角色捏得很好看", scoreFor: "asaModal" },
+        { text: "下載瑟瑟模組,讓自己的市民到處有小孩", scoreFor: "danielModal" },
+        { text: "根本不知道可以下載模組", scoreFor: "daijiModal" },
+        { text: "下載暴力模組跟毒品模組", scoreFor: "melinaModal" },
       ]
-    }
+    },
   ];
 
   let currentQuestionIndex = 0;
@@ -201,25 +301,33 @@
   }
 
   function showQuestion() {
-    questionText.textContent = quizData[currentQuestionIndex].question;
-    optionsList.innerHTML = "";
+  questionText.textContent = quizData[currentQuestionIndex].question;
+  optionsList.innerHTML = "";
 
-    quizData[currentQuestionIndex].options.forEach(opt => {
-      const li = document.createElement("li");
-      li.textContent = opt.text;
-      li.addEventListener("click", () => {
+  quizData[currentQuestionIndex].options.forEach(opt => {
+    const li = document.createElement("li");
+    li.textContent = opt.text;
+
+    li.addEventListener("click", () => {
+      if (Array.isArray(opt.scoreFor)) {
+        opt.scoreFor.forEach(id => scores[id]++);
+      } else {
         scores[opt.scoreFor]++;
-        currentQuestionIndex++;
-        if (currentQuestionIndex < quizData.length) {
-          showQuestion();
-        } else {
-          document.getElementById("quizModal").classList.remove("active");
-          showResult();
-        }
-      });
-      optionsList.appendChild(li);
+      }
+
+      currentQuestionIndex++;
+      if (currentQuestionIndex < quizData.length) {
+        showQuestion();
+      } else {
+        document.getElementById("quizModal").classList.remove("active");
+        showResult();
+      }
+    });
+
+    optionsList.appendChild(li); // ✅別忘記加這行，讓選項出現在畫面上
     });
   }
+
 
   function showResult() {
     const maxScore = Math.max(...Object.values(scores));
@@ -241,6 +349,10 @@
    window.location.href = "index.html";
   }
 
+// 點影片立即關閉
+document.getElementById("introVideo").addEventListener("click", function () {
+  document.getElementById("introVideo").style.display = "none";
+});
 </script>
 
 </body>
