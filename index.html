@@ -80,20 +80,20 @@
     }
 
     .modal-content {
-      background-color: #fff0f5;
-      margin: 5% auto;
-      padding: 10px 20px;
-      padding-bottom: 40px;  /* ✅ 新增這行 */
-      border: 3px double red;
-      width: 80%;
-      max-width: 600px;
-      box-shadow: 5px 5px #999;
-      position: relative;
-      font-size: 20px;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff0f5;
+  padding: 10px 20px 40px 20px;
+  border: 3px double red;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 5px 5px #999;
+  font-size: 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+  }
 
     .modal-content .avatar {
       width: auto;
@@ -389,6 +389,7 @@
 
 </body>
 </html>
+
 
 
 
